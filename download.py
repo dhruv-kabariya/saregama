@@ -26,10 +26,11 @@ chrome_options.add_argument('--disable-software-rasterizer')
 
 
 f = open("songname.txt","r")
+fail = open("fail.txt","w")
 s = f.readlines()
 
-fail = []
-driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver",chrome_options=chrome_options)
+
+driver = webdriver.Chrome(executable_path="chromedriver",chrome_options=chrome_options)
 
 download_dir = "/Download"
 for i in range(40):
@@ -47,6 +48,6 @@ for i in range(40):
         wait.until(ec.presence_of_element_located((By.TAG_NAME,"button")))
         dow = driver.find_elements(by=By.TAG_NAME,value="button")[1]
     except:
-        fail.append(s[i])
+        fail.write(s[i] + "\n")
         
-print(fail)
+# print(fail)
